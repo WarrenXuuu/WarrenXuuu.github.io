@@ -317,150 +317,8 @@ you can check this qnx macros:
 <li>if you specify CXX_STANDARD, you should define  _QNX_SOURCE<br>当编译参数没有给定语言标准如 c++11、c++14、g++11…时，_QNX_SOURCE是默认被定义的<br>会包括POSIX的头文件，包括数据类型，宏声明，库函数等。<br>当指定了语言版本时，如使用了CXX_STANDARD，需要在编译时增加此宏定义</li>
 <li>If you need to include OS-specific code in your application, you can wrap it in an #ifdef to make<br>the program more portable.<br>For example:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> defined(__QNX__)</span></span><br><span class="line"><span class="comment">/* QNX-specific (any flavor) code here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(__QNXNTO__)</span></span><br><span class="line"><span class="comment">/* QNX Neutrino-specific code here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="comment">/* QNX 4-specific code here */</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h3 id="where-QNX-MACROS-work"><a href="#where-QNX-MACROS-work" class="headerlink" title="where QNX MACROS work:"></a>where QNX MACROS work:</h3><img src="/.io//12/17/qnx%E7%BC%96%E8%AF%91/img_2.png" class title="img_2.png">
-<img src="/.io//12/17/qnx%E7%BC%96%E8%AF%91/img_3.png" class title="img_3.png">
-<img src="/.io//12/17/qnx%E7%BC%96%E8%AF%91/img_5.png" class title="img_5.png">
-
-<h2 id="toolchain-target-type-list"><a href="#toolchain-target-type-list" class="headerlink" title="toolchain target type list"></a>toolchain target type list</h2><img src="/.io//12/17/qnx%E7%BC%96%E8%AF%91/img_1.png" class title="img_1.png">
-
-
-<h2 id="reference-url"><a href="#reference-url" class="headerlink" title="reference url:"></a>reference url:</h2><p><a target="_blank" rel="noopener" href="https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html">https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://warrenxuuu.github.io/2024/12/17/qnx%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WarrenXu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2024/12/17/qnx%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" itemprop="url">qnx交叉编译</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-12-17T18:11:57+08:00">
-                2024-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>when you build qnx app codes and occur errors like unix&#x2F;boost api not found</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qnx7/usr/include/c++/v1/__threading_support:297:10 error: ‘pthread_cond_timewait&#x27; was not declared in this scope</span><br></pre></td></tr></table></figure>
-<p>maybe not the error of your application code error or link config error<br>you can check this qnx macros:</p>
-<h2 id="特殊宏"><a href="#特殊宏" class="headerlink" title="特殊宏"></a>特殊宏</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_QNX_SOURCE</span><br><span class="line">Include everything defined in the header files. This is defined by default if you don&#x27;t specify</span><br><span class="line">a language standard.</span><br><span class="line"></span><br><span class="line">__QNX__</span><br><span class="line">The target is a QNX operating system (QNX 4 or QNX Neutrino).</span><br><span class="line"></span><br><span class="line">__QNXNTO__</span><br><span class="line">The target is the QNX Neutrino RTOS.</span><br></pre></td></tr></table></figure>
-<h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CMakeLists.txt</span><br><span class="line">   add_definitions(-D_QNX_SOURCE)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>if you specify CXX_STANDARD, you should define  _QNX_SOURCE<br>当编译参数没有给定语言标准如 c++11、c++14、g++11…时，_QNX_SOURCE是默认被定义的<br>会包括POSIX的头文件，包括数据类型，宏声明，库函数等。<br>当指定了语言版本时，如使用了CXX_STANDARD，需要在编译时增加此宏定义</li>
-<li>If you need to include OS-specific code in your application, you can wrap it in an #ifdef to make<br>the program more portable.<br>For example:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#if defined(__QNX__)</span><br><span class="line">/* QNX-specific (any flavor) code here */</span><br><span class="line">#if defined(__QNXNTO__)</span><br><span class="line">/* QNX Neutrino-specific code here */</span><br><span class="line">#else</span><br><span class="line">/* QNX 4-specific code here */</span><br><span class="line">#endif</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="where-QNX-MACROS-work"><a href="#where-QNX-MACROS-work" class="headerlink" title="where QNX MACROS work:"></a>where QNX MACROS work:</h3>
-
-
-
-<h2 id="toolchain-target-type-list"><a href="#toolchain-target-type-list" class="headerlink" title="toolchain target type list"></a>toolchain target type list</h2>
-
-
+<h3 id="where-QNX-MACROS-work"><a href="#where-QNX-MACROS-work" class="headerlink" title="where QNX MACROS work:"></a>where QNX MACROS work:</h3><p><img src="/.io//imgs/img_2.png" alt="img_2.png"><br><img src="/.io//imgs/img_3.png" alt="img_3.png"><br><img src="/.io//imgs/img_5.png" alt="img_5.png"></p>
+<h2 id="toolchain-target-type-list"><a href="#toolchain-target-type-list" class="headerlink" title="toolchain target type list"></a>toolchain target type list</h2><p><img src="/.io//imgs/img_1.png" alt="img_1.png"></p>
 <h2 id="reference-url"><a href="#reference-url" class="headerlink" title="reference url:"></a>reference url:</h2><p><a target="_blank" rel="noopener" href="https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html">https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html</a></p>
 
           
@@ -543,7 +401,7 @@ you can check this qnx macros:
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
