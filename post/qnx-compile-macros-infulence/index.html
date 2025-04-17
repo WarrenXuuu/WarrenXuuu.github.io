@@ -1,0 +1,219 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>qnx compile macros infulence | Warren&#39;s Blog</title>
+<link rel="shortcut icon" href="https://warrenxuuu.github.io/favicon.ico?v=1744876337991">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://warrenxuuu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="qnx compile macros infulence | Warren&#39;s Blog - Atom Feed" href="https://warrenxuuu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+when you build qnx app codes and occur errors like unix/sys api not found,
+maybe not the error of your application code..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://warrenxuuu.github.io">
+  <img class="avatar" src="https://warrenxuuu.github.io/images/avatar.png?v=1744876337991" alt="">
+  </a>
+  <h1 class="site-title">
+    Warren&#39;s Blog
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              qnx compile macros infulence
+            </h2>
+            <div class="post-info">
+              <span>
+                2025-04-17
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <font size=3>
+when you build qnx app codes and occur errors like unix/sys api not found,
+maybe not the error of your application code error or link config error
+</font>
+<pre><code>qnx7/usr/include/c++/v1/__threading_support:297:10 error: 
+‘pthread_cond_timewait' was not declared in this scope
+</code></pre>
+<font size=3>
+you can check this qnx macros in your source code:
+</font>
+<pre><code class="language-cpp">_QNX_SOURCE
+Include everything defined in the header files. This is defined by default if you don't specify
+a language standard.
+
+__QNX__
+The target is a QNX operating system (QNX 4 or QNX Neutrino).
+
+__QNXNTO__
+The target is the QNX Neutrino RTOS.
+</code></pre>
+<h3 id="solution">solution</h3>
+<pre><code class="language-cpp">CMakeLists.txt
+   add_definitions(-D_QNX_SOURCE)
+</code></pre>
+<ol>
+<li>if you specify CXX_STANDARD, you should define  _QNX_SOURCE<br>
+当编译参数没有给定语言标准如 c++11、c++14、g++11...时，_QNX_SOURCE是默认被定义的<br>
+会包括POSIX的头文件，包括数据类型，宏声明，库函数等。<br>
+当指定了语言版本时，如使用了CXX_STANDARD，需要在编译时增加此宏定义</li>
+<li>If you need to include OS-specific code in your application, you can wrap it in an #ifdef to make<br>
+the program more portable.<br>
+For example:</li>
+</ol>
+<pre><code class="language-cpp">   #if defined(__QNX__)
+   /* QNX-specific (any flavor) code here */
+   #if defined(__QNXNTO__)
+   /* QNX Neutrino-specific code here */
+   #else
+   /* QNX 4-specific code here */
+   #endif
+   #endif
+</code></pre>
+<h3 id="where-qnx-macros-work">where QNX MACROS work:</h3>
+<figure data-type="image" tabindex="1"><img src="https://warrenxuuu.github.io/post-images/1744861244970.png" alt="" loading="lazy"></figure>
+<h2 id="toolchain-target-type-list">toolchain target type list</h2>
+<figure data-type="image" tabindex="2"><img src="https://warrenxuuu.github.io/post-images/1744861165059.png" alt="" loading="lazy"></figure>
+<h2 id="reference-url">reference url:</h2>
+<p>https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#solution">solution</a></li>
+<li><a href="#where-qnx-macros-work">where QNX MACROS work:</a></li>
+</ul>
+</li>
+<li><a href="#toolchain-target-type-list">toolchain target type list</a></li>
+<li><a href="#reference-url">reference url:</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://warrenxuuu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

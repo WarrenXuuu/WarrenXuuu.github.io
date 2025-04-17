@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://warrenxuuu.github.io</id>
+    <title>Warren&apos;s Blog</title>
+    <updated>2025-04-17T07:52:58.850Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://warrenxuuu.github.io"/>
+    <link rel="self" href="https://warrenxuuu.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://warrenxuuu.github.io/images/avatar.png</logo>
+    <icon>https://warrenxuuu.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2025, Warren&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[关于汽车行业研发架构师的思考]]></title>
+        <id>https://warrenxuuu.github.io/post/guan-yu-qi-che-xing-ye-yan-fa-jia-gou-shi-de-si-kao/</id>
+        <link href="https://warrenxuuu.github.io/post/guan-yu-qi-che-xing-ye-yan-fa-jia-gou-shi-de-si-kao/">
+        </link>
+        <updated>2025-04-17T07:50:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="架构师的工作">架构师的工作</h1>
+<p>在一个相对复杂的问题上引导实施一个结构化的解决方案。这个方案的参与者是一群人，所以架构师的产出不完全靠自己，而是靠撬动一群人来完成架构目标<br>
+架构师创造的增量价值就在于能够审时度势，在企业内部各种资源限制和现实条件下，找到合理可行，并且能够最大化企业长期价值的架构方案</p>
+<h2 id="架构目标">架构目标</h2>
+<h3 id="架构目标必须明确">架构目标必须明确</h3>
+<h3 id="架构目标的考虑因素">架构目标的考虑因素</h3>
+<h4 id="1-商业价值">1. 商业价值</h4>
+<h3 id="问自己几个问题">问自己几个问题</h3>
+<ol>
+<li>商业模式<br>
+公司的商业模式是什么？<br>
+我所在的团队的性质：成本部门？直接创造营收的部门？提升产品力的部门？<br>
+公司业务收缩时团队的可取代性：自研团队转外包？自研框架转通用开源框架？</li>
+</ol>
+<h3 id="汽车行业的商业模式转变">汽车行业的商业模式转变</h3>
+<p>营收来源<br>
+卖车的一次性收入 + 售后维修服务 + 金融服务<br>
+-&gt; 软件服务订阅收益 + 售后维修服务 + 金融服务 - 冗余硬件价格<br>
+竞争力的转变：<br>
+耐用、省油、便于维修<br>
+-&gt; 智能化：自动驾驶、智能座舱<br>
+标杆企业<br>
+大众、丰田<br>
+-&gt; 特斯拉、华为、苹果</p>
+<p>座舱开发 是提升系统稳定性 还是配合或引导新的电子电器架构 提升产品智能化能力<br>
+还是提升完成需求的实现能力 还是定义产品的能力</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[qnx compile macros infulence]]></title>
+        <id>https://warrenxuuu.github.io/post/qnx-compile-macros-infulence/</id>
+        <link href="https://warrenxuuu.github.io/post/qnx-compile-macros-infulence/">
+        </link>
+        <updated>2025-04-17T03:38:25.000Z</updated>
+        <content type="html"><![CDATA[<font size=3>
+when you build qnx app codes and occur errors like unix/sys api not found,
+maybe not the error of your application code error or link config error
+</font>
+<pre><code>qnx7/usr/include/c++/v1/__threading_support:297:10 error: 
+‘pthread_cond_timewait' was not declared in this scope
+</code></pre>
+<font size=3>
+you can check this qnx macros in your source code:
+</font>
+<pre><code class="language-cpp">_QNX_SOURCE
+Include everything defined in the header files. This is defined by default if you don't specify
+a language standard.
+
+__QNX__
+The target is a QNX operating system (QNX 4 or QNX Neutrino).
+
+__QNXNTO__
+The target is the QNX Neutrino RTOS.
+</code></pre>
+<h3 id="solution">solution</h3>
+<pre><code class="language-cpp">CMakeLists.txt
+   add_definitions(-D_QNX_SOURCE)
+</code></pre>
+<ol>
+<li>if you specify CXX_STANDARD, you should define  _QNX_SOURCE<br>
+当编译参数没有给定语言标准如 c++11、c++14、g++11...时，_QNX_SOURCE是默认被定义的<br>
+会包括POSIX的头文件，包括数据类型，宏声明，库函数等。<br>
+当指定了语言版本时，如使用了CXX_STANDARD，需要在编译时增加此宏定义</li>
+<li>If you need to include OS-specific code in your application, you can wrap it in an #ifdef to make<br>
+the program more portable.<br>
+For example:</li>
+</ol>
+<pre><code class="language-cpp">   #if defined(__QNX__)
+   /* QNX-specific (any flavor) code here */
+   #if defined(__QNXNTO__)
+   /* QNX Neutrino-specific code here */
+   #else
+   /* QNX 4-specific code here */
+   #endif
+   #endif
+</code></pre>
+<h3 id="where-qnx-macros-work">where QNX MACROS work:</h3>
+<figure data-type="image" tabindex="1"><img src="https://warrenxuuu.github.io/post-images/1744861244970.png" alt="" loading="lazy"></figure>
+<h2 id="toolchain-target-type-list">toolchain target type list</h2>
+<figure data-type="image" tabindex="2"><img src="https://warrenxuuu.github.io/post-images/1744861165059.png" alt="" loading="lazy"></figure>
+<h2 id="reference-url">reference url:</h2>
+<p>https://www.qnx.com/developers/docs/8.0/com.qnx.doc.neutrino.prog/topic/devel_PortableCode.html</p>
+]]></content>
+    </entry>
+</feed>

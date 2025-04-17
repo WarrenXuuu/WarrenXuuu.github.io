@@ -1,0 +1,210 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关于汽车行业研发架构师的思考 | Warren&#39;s Blog</title>
+<link rel="shortcut icon" href="https://warrenxuuu.github.io/favicon.ico?v=1744876337991">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://warrenxuuu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="关于汽车行业研发架构师的思考 | Warren&#39;s Blog - Atom Feed" href="https://warrenxuuu.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="架构师的工作
+在一个相对复杂的问题上引导实施一个结构化的解决方案。这个方案的参与者是一群人，所以架构师的产出不完全靠自己，而是靠撬动一群人来完成架构目标
+架构师创造的增量价值就在于能够审时度势，在企业内部各种资源限制和现实条件下，找到合理可..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://warrenxuuu.github.io">
+  <img class="avatar" src="https://warrenxuuu.github.io/images/avatar.png?v=1744876337991" alt="">
+  </a>
+  <h1 class="site-title">
+    Warren&#39;s Blog
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              关于汽车行业研发架构师的思考
+            </h2>
+            <div class="post-info">
+              <span>
+                2025-04-17
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h1 id="架构师的工作">架构师的工作</h1>
+<p>在一个相对复杂的问题上引导实施一个结构化的解决方案。这个方案的参与者是一群人，所以架构师的产出不完全靠自己，而是靠撬动一群人来完成架构目标<br>
+架构师创造的增量价值就在于能够审时度势，在企业内部各种资源限制和现实条件下，找到合理可行，并且能够最大化企业长期价值的架构方案</p>
+<h2 id="架构目标">架构目标</h2>
+<h3 id="架构目标必须明确">架构目标必须明确</h3>
+<h3 id="架构目标的考虑因素">架构目标的考虑因素</h3>
+<h4 id="1-商业价值">1. 商业价值</h4>
+<h3 id="问自己几个问题">问自己几个问题</h3>
+<ol>
+<li>商业模式<br>
+公司的商业模式是什么？<br>
+我所在的团队的性质：成本部门？直接创造营收的部门？提升产品力的部门？<br>
+公司业务收缩时团队的可取代性：自研团队转外包？自研框架转通用开源框架？</li>
+</ol>
+<h3 id="汽车行业的商业模式转变">汽车行业的商业模式转变</h3>
+<p>营收来源<br>
+卖车的一次性收入 + 售后维修服务 + 金融服务<br>
+-&gt; 软件服务订阅收益 + 售后维修服务 + 金融服务 - 冗余硬件价格<br>
+竞争力的转变：<br>
+耐用、省油、便于维修<br>
+-&gt; 智能化：自动驾驶、智能座舱<br>
+标杆企业<br>
+大众、丰田<br>
+-&gt; 特斯拉、华为、苹果</p>
+<p>座舱开发 是提升系统稳定性 还是配合或引导新的电子电器架构 提升产品智能化能力<br>
+还是提升完成需求的实现能力 还是定义产品的能力</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%9E%B6%E6%9E%84%E5%B8%88%E7%9A%84%E5%B7%A5%E4%BD%9C">架构师的工作</a>
+<ul>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%9B%AE%E6%A0%87">架构目标</a>
+<ul>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%9B%AE%E6%A0%87%E5%BF%85%E9%A1%BB%E6%98%8E%E7%A1%AE">架构目标必须明确</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84%E7%9B%AE%E6%A0%87%E7%9A%84%E8%80%83%E8%99%91%E5%9B%A0%E7%B4%A0">架构目标的考虑因素</a>
+<ul>
+<li><a href="#1-%E5%95%86%E4%B8%9A%E4%BB%B7%E5%80%BC">1. 商业价值</a></li>
+</ul>
+</li>
+<li><a href="#%E9%97%AE%E8%87%AA%E5%B7%B1%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98">问自己几个问题</a></li>
+<li><a href="#%E6%B1%BD%E8%BD%A6%E8%A1%8C%E4%B8%9A%E7%9A%84%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F%E8%BD%AC%E5%8F%98">汽车行业的商业模式转变</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://warrenxuuu.github.io/post/qnx-compile-macros-infulence/">
+              <h3 class="post-title">
+                qnx compile macros infulence
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://warrenxuuu.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
